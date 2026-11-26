@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8f7f4">
+<meta name="description" content="Gestão simples da loja RK Pratas">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>RK Pratas | Gestão</title>
+<style>
+:root{--bg:#f8f7f4;--card:#fff;--lilac:#eee7f4;--lilac2:#d9c8e5;--purple:#80639d;--deep:#51445d;--muted:#88818b;--line:#eee9ef;--green:#e8f3e9;--red:#fae8e8;--shadow:0 8px 24px #51445d10}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--deep);font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding-bottom:84px}
+header{padding:22px 18px 14px;display:flex;justify-content:space-between;align-items:center;max-width:760px;margin:auto}
+.brand{font-family:Georgia,serif;font-size:25px;font-style:italic;font-weight:700;letter-spacing:.5px}.sub{font-size:10px;letter-spacing:2px;color:var(--purple);margin-top:3px}
+main{max-width:760px;margin:auto;padding:0 15px}.screen{display:none}.screen.active{display:block}
+h2{font-size:19px;margin:12px 2px 14px}.muted{color:var(--muted);font-size:12px}
+.hero{background:linear-gradient(135deg,#eee7f4,#f5f0f7);padding:19px;border-radius:20px;margin:8px 0 14px}
+.hero small{color:#776684;font-weight:650;letter-spacing:.5px}.hero strong{display:block;font-size:29px;margin:5px 0;color:var(--deep)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:15px;box-shadow:var(--shadow);min-width:0}
+.metric span{font-size:12px;color:var(--muted)}.metric b{display:block;font-size:19px;margin-top:7px;overflow-wrap:anywhere}
+.quick{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:1px solid var(--line);background:white;border-radius:16px;padding:15px;color:var(--deep);font:inherit;box-shadow:var(--shadow)}
+.ico{width:38px;height:38px;border-radius:12px;background:var(--lilac);display:grid;place-items:center;color:var(--purple);font-size:19px;flex:none}
+.quick b{display:block;font-size:14px}.quick small{color:var(--muted);font-size:11px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+button,.btn{border:0;border-radius:12px;padding:12px 14px;background:var(--purple);color:white;font-weight:650;font-size:13px;cursor:pointer}
+button.secondary,.btn.secondary{background:var(--lilac);color:var(--deep)}button.danger{background:var(--red);color:#934848}
+form{background:white;border:1px solid var(--line);border-radius:17px;padding:14px;margin:12px 0;display:grid;gap:10px}
+label{display:grid;gap:5px;font-size:12px;color:#716878;font-weight:650}
+input,select,textarea{width:100%;border:1px solid #e5dfe8;border-radius:10px;padding:12px;background:#fff;color:var(--deep);font:inherit;font-size:14px;min-width:0}
+.formrow{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.list{display:grid;gap:9px;margin:12px 0 20px}
+.item{background:white;border:1px solid var(--line);border-radius:14px;padding:13px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.item b{font-size:14px}.item small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.item .right{text-align:right;white-space:nowrap}.pill{display:inline-block;padding:4px 8px;border-radius:99px;background:var(--lilac);font-size:10px;color:var(--purple);margin-top:5px}
+.empty{text-align:center;color:var(--muted);padding:25px 10px;font-size:13px;background:#fff;border:1px dashed var(--lilac2);border-radius:15px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fffefaee;backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:10;padding:7px 4px calc(7px + env(safe-area-inset-bottom))}
+nav button{background:transparent;color:#8a8190;padding:7px 4px;flex:1;max-width:145px;font-size:10px;display:grid;gap:3px;justify-items:center}
+nav button span{font-size:19px}nav button.active{color:var(--purple);background:var(--lilac);border-radius:12px}
+.note{font-size:11px;color:var(--muted);line-height:1.5;margin:12px 3px}
+hr{border:0;border-top:1px solid var(--line);margin:15px 0}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">RK PRATAS</div><div class="sub">GESTÃO DA LOJA</div></div><div class="ico" aria-hidden="true">✦</div></header>
+<main>
+<section id="home" class="screen active">
+ <div class="hero"><small>RESUMO DA LOJA</small><strong id="salesTotal">R$ 0,00</strong><span class="muted">Total de vendas registradas</span></div>
+ <div class="grid">
+  <div class="card metric"><span>Já recebido</span><b id="receivedTotal">R$ 0,00</b></div>
+  <div class="card metric"><span>A receber</span><b id="dueTotal">R$ 0,00</b></div>
+  <div class="card metric"><span>Despesas</span><b id="expenseTotal">R$ 0,00</b></div>
+  <div class="card metric"><span>Peças cadastradas</span><b id="productCount">0</b></div>
+  <div class="card metric"><span>Peças em estoque</span><b id="stockCount">0</b></div>
+  <div class="card metric"><span>Resultado estimado*</span><b id="profitTotal">R$ 0,00</b></div>
+ </div>
+ <h2>Acesso rápido</h2>
+ <div class="grid">
+  <button class="quick" onclick="show('sales')"><span class="ico">＋</span><span><b>Nova venda</b><small>Registrar uma venda</small></span></button>
+  <button class="quick" onclick="show('products')"><span class="ico">◇</span><span><b>Produtos</b><small>Peças e estoque</small></span></button>
+  <button class="quick" onclick="show('expenses')"><span class="ico">−</span><span><b>Despesas</b><small>Registrar gastos</small></span></button>
+ </div>
+ <p class="note">*Resultado estimado = lucro bruto das vendas menos despesas cadastradas. Guarde cópias de segurança em “Dados”.</p>
+</section>
+
+<section id="products" class="screen">
+ <h2>Produtos e estoque</h2>
+ <form id="productForm">
+  <b>Novo produto</b>
+  <div class="formrow"><label>Código<input name="code" required placeholder="Ex.: AN001"></label><label>Categoria<input name="category" placeholder="Anel, colar..."></label></div>
+  <label>Nome da peça<input name="name" required placeholder="Nome ou descrição"></label>
+  <div class="formrow"><label>Custo (R$)<input name="cost" type="number" min="0" step=".01" required></label><label>Preço de venda (R$)<input name="price" type="number" min="0" step=".01" required></label></div>
+  <label>Quantidade inicial<input name="stock" type="number" min="0" step="1" required value="1"></label>
+  <button type="submit">Salvar produto</button>
+ </form>
+ <div class="actions"><input id="productSearch" placeholder="Buscar produto..." oninput="renderProducts()"></div>
+ <div id="productList" class="list"></div>
+</section>
+
+<section id="sales" class="screen">
+ <h2>Vendas e pagamentos</h2>
+ <form id="saleForm">
+  <b>Registrar venda</b>
+  <label>Produto<select name="product" id="saleProduct" required><option value="">Selecione uma peça</option></select></label>
+  <div class="formrow"><label>Quantidade<input name="qty" type="number" min="1" step="1" value="1" required></label><label>Data<input name="date" type="date" required></label></div>
+  <label>Cliente (opcional)<input name="customer" placeholder="Nome do cliente"></label>
+  <div class="formrow"><label>Forma de pagamento<select name="method" required><option>À vista</option><option>Pix</option><option>A prazo</option></select></label><label>Valor total (R$)<input name="total" type="number" min="0" step=".01" required></label></div>
+  <div id="receivedWrap"><label>Valor recebido agora (R$)<input name="received" type="number" min="0" step=".01" value="0"></label></div>
+  <button type="submit">Salvar venda</button>
+ </form>
+ <div class="actions"><input id="saleSearch" placeholder="Buscar venda ou cliente..." oninput="renderSales()"></div>
+ <div id="saleList" class="list"></div>
+</section>
+
+<section id="expenses" class="screen">
+ <h2>Controle de despesas</h2>
+ <form id="expenseForm">
+  <b>Nova despesa</b>
+  <label>Descrição<input name="description" required placeholder="Ex.: compra de mercadorias"></label>
+  <div class="formrow"><label>Valor (R$)<input name="amount" type="number" min="0" step=".01" required></label><label>Data<input name="date" type="date" required></label></div>
+  <label>Categoria<select name="category"><option>Compra de peças</option><option>Embalagens</option><option>Frete</option><option>Divulgação</option><option>Taxas</option><option>Transporte</option><option>Outros</option></select></label>
+  <button type="submit">Salvar despesa</button>
+ </form>
+ <div id="expenseList" class="list"></div>
+</section>
+
+<section id="data" class="screen">
+ <h2>Dados e segurança</h2>
+ <div class="card">
+  <b>Backup dos seus dados</b>
+  <p class="muted">Os registros ficam salvos neste navegador e neste aparelho. Exporte uma cópia regularmente para não perder seus dados.</p>
+  <div class="actions"><button onclick="backup()">Baixar backup</button><button class="secondary" onclick="document.getElementById('restoreFile').click()">Restaurar backup</button><input id="restoreFile" type="file" accept="application/json" hidden onchange="restore(event)"></div>
+ </div>
+ <div class="card" style="margin-top:12px">
+  <b>Como funciona o prazo</b>
+  <p class="muted">Ao cadastrar uma venda a prazo, informe o valor recebido agora. Depois, abra a venda e registre cada parcela recebida. O saldo e o status são atualizados automaticamente.</p>
+ </div>
+ <div class="card" style="margin-top:12px">
+  <b>Instalar na tela inicial</b>
+  <p class="muted">Depois que o sistema estiver publicado em um endereço seguro (HTTPS), abra no Chrome, toque nos três pontinhos e escolha “Adicionar à tela inicial” ou “Instalar app”.</p>
+ </div>
+ <p class="note">Privacidade: esta versão inicial guarda os dados localmente no aparelho. Ela não envia informações para a internet e não sincroniza automaticamente com outro celular.</p>
+</section>
+</main>
+<nav>
+ <button class="active" data-screen="home" onclick="show('home')"><span>⌂</span>Início</button>
+ <button data-screen="products" onclick="show('products')"><span>◇</span>Produtos</button>
+ <button data-screen="sales" onclick="show('sales')"><span>＋</span>Vendas</button>
+ <button data-screen="expenses" onclick="show('expenses')"><span>−</span>Despesas</button>
+ <button data-screen="data" onclick="show('data')"><span>⚙</span>Dados</button>
+</nav>
+<script>
+const KEY='rkpratas_v1';
+let db=JSON.parse(localStorage.getItem(KEY)||'{"products":[],"sales":[],"expenses":[]}');
+const brl=n=>Number(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const today=()=>new Date().toISOString().slice(0,10);
+function save(){localStorage.setItem(KEY,JSON.stringify(db));renderAll()}
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.screen===id));window.scrollTo(0,0);if(id==='sales')fillProducts()}
+function stockOf(p){return Number(p.stock)-db.sales.filter(s=>s.productId===p.id).reduce((a,s)=>a+s.qty,0)}
+function receivedOf(s){return Number(s.received||0)+(s.installments||[]).reduce((a,x)=>a+Number(x),0)}
+function dueOf(s){return Math.max(0,Number(s.total)-receivedOf(s))}
+function renderHome(){
+ const total=db.sales.reduce((a,s)=>a+Number(s.total),0), received=db.sales.reduce((a,s)=>a+receivedOf(s),0), due=db.sales.reduce((a,s)=>a+dueOf(s),0);
+ const gross=db.sales.reduce((a,s)=>a+(Number(s.priceAtSale)-Number(s.costAtSale))*s.qty,0);
+ const expenses=db.expenses.reduce((a,e)=>a+Number(e.amount),0);
+ document.getElementById('salesTotal').textContent=brl(total);document.getElementById('receivedTotal').textContent=brl(received);document.getElementById('dueTotal').textContent=brl(due);document.getElementById('expenseTotal').textContent=brl(expenses);document.getElementById('productCount').textContent=db.products.length;document.getElementById('stockCount').textContent=db.products.reduce((a,p)=>a+Math.max(0,stockOf(p)),0);document.getElementById('profitTotal').textContent=brl(gross-expenses);
+}
+function renderProducts(){
+ const q=(document.getElementById('productSearch')?.value||'').toLowerCase();
+ const list=db.products.filter(p=>(p.name+' '+p.code+' '+p.category).toLowerCase().includes(q));
+ document.getElementById('productList').innerHTML=list.length?list.map(p=>`<div class="item"><div><b>${esc(p.name)}</b><small>${esc(p.code)} · ${esc(p.category||'Sem categoria')} · Custo ${brl(p.cost)}</small><span class="pill">Estoque: ${stockOf(p)}</span></div><div class="right"><b>${brl(p.price)}</b><small>Venda</small><button class="danger" style="padding:7px 9px;margin-top:6px" onclick="delProduct('${p.id}')">Excluir</button></div></div>`).join(''):'<div class="empty">Nenhum produto cadastrado ainda.</div>';
+ fillProducts();
+}
+function fillProducts(){const sel=document.getElementById('saleProduct');if(!sel)return;const old=sel.value;sel.innerHTML='<option value="">Selecione uma peça</option>'+db.products.map(p=>`<option value="${p.id}">${esc(p.code)} — ${esc(p.name)} (estoque ${stockOf(p)})</option>`).join('');if(old)sel.value=old}
+function renderSales(){
+ const q=(document.getElementById('saleSearch')?.value||'').toLowerCase();
+ const list=[...db.sales].reverse().filter(s=>(s.name+' '+s.customer+' '+s.method).toLowerCase().includes(q));
+ document.getElementById('saleList').innerHTML=list.length?list.map(s=>`<div class="item"><div><b>${esc(s.name)} · ${esc(s.customer||'Sem cliente')}</b><small>${s.date} · ${s.method} · Qtd. ${s.qty}</small><span class="pill">${dueOf(s)>0?'Em aberto: '+brl(dueOf(s)):'Quitado'}</span></div><div class="right"><b>${brl(s.total)}</b><small>Recebido ${brl(receivedOf(s))}</small><button class="secondary" style="padding:7px 9px;margin-top:6px" onclick="addInstallment('${s.id}')">＋ Parcela</button></div></div>`).join(''):'<div class="empty">Nenhuma venda registrada ainda.</div>';
+}
+function renderExpenses(){
+ const list=[...db.expenses].reverse();
+ document.getElementById('expenseList').innerHTML=list.length?list.map(e=>`<div class="item"><div><b>${esc(e.description)}</b><small>${e.date} · ${esc(e.category)}</small></div><div class="right"><b>${brl(e.amount)}</b><button class="danger" style="padding:7px 9px;margin-top:6px" onclick="delExpense('${e.id}')">Excluir</button></div></div>`).join(''):'<div class="empty">Nenhuma despesa lançada ainda.</div>';
+}
+function renderAll(){renderHome();renderProducts();renderSales();renderExpenses()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+const methodSelect=document.querySelector('#saleForm [name=method]');
+const totalInput=document.querySelector('#saleForm [name=total]');
+const receivedInput=document.querySelector('#saleForm [name=received]');
+function syncReceived(){if(methodSelect.value!=='A prazo'){receivedInput.value=totalInput.value||0;receivedInput.readOnly=true;}else{receivedInput.readOnly=false;if(!receivedInput.value)receivedInput.value=0;}}
+methodSelect.addEventListener('change',syncReceived);
+totalInput.addEventListener('input',syncReceived);
+syncReceived();
+document.getElementById('productForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),code=f.get('code').trim();if(db.products.some(p=>p.code.toLowerCase()===code.toLowerCase()))return alert('Já existe um produto com esse código.');db.products.push({id:crypto.randomUUID(),code,name:f.get('name').trim(),category:f.get('category'),cost:+f.get('cost'),price:+f.get('price'),stock:+f.get('stock')});e.target.reset();e.target.stock.value=1;save();alert('Produto cadastrado!')});
+document.getElementById('saleForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),p=db.products.find(x=>x.id===f.get('product')),qty=+f.get('qty'),method=f.get('method'),total=+f.get('total'),received=+f.get('received');if(!p)return alert('Selecione um produto.');if(qty>stockOf(p))return alert('Estoque insuficiente.');if(method!=='A prazo'&&received!==total)return alert('Para venda à vista ou Pix, informe o valor total em “Valor recebido agora”.');if(received>total)return alert('O recebido não pode ser maior que o total.');db.sales.push({id:crypto.randomUUID(),productId:p.id,code:p.code,name:p.name,qty,customer:f.get('customer'),method,date:f.get('date'),total,received:method==='A prazo'?received:total,installments:[],priceAtSale:p.price,costAtSale:p.cost});e.target.reset();e.target.date.value=today();e.target.received.value=0;e.target.qty.value=1;save();alert('Venda registrada!')});
+document.getElementById('expenseForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target);db.expenses.push({id:crypto.randomUUID(),description:f.get('description').trim(),amount:+f.get('amount'),date:f.get('date'),category:f.get('category')});e.target.reset();e.target.date.value=today();save();alert('Despesa registrada!')});
+function addInstallment(id){const s=db.sales.find(x=>x.id===id);const left=dueOf(s);if(left<=0)return alert('Esta venda já está quitada.');const val=prompt('Quanto recebeu nesta parcela?\\nSaldo restante: '+brl(left));if(val===null)return;const n=Number(val.replace(',','.'));if(!Number.isFinite(n)||n<=0||n>left)return alert('Informe um valor válido, até '+brl(left)+'.');s.installments.push(n);save();alert('Parcela registrada. Saldo restante: '+brl(dueOf(s)))}
+function delProduct(id){if(db.sales.some(s=>s.productId===id))return alert('Este produto já tem vendas registradas e não pode ser excluído.');if(confirm('Excluir este produto?')){db.products=db.products.filter(p=>p.id!==id);save()}}
+function delExpense(id){if(confirm('Excluir esta despesa?')){db.expenses=db.expenses.filter(e=>e.id!==id);save()}}
+function backup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='backup-rk-pratas.json';a.click();URL.revokeObjectURL(a.href)}
+function restore(ev){const file=ev.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(!Array.isArray(data.products)||!Array.isArray(data.sales)||!Array.isArray(data.expenses))throw 0;if(confirm('Restaurar este backup? Os dados atuais serão substituídos.')){db=data;save();alert('Backup restaurado!')}}catch(e){alert('Arquivo de backup inválido.')}};reader.readAsText(file);ev.target.value=''}
+document.querySelector('#saleForm [name=date]').value=today();document.querySelector('#expenseForm [name=date]').value=today();
+renderAll();
+</script>
+</body></html>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}</script>

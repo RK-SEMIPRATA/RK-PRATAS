@@ -1,0 +1,19 @@
+RK PRATAS — GESTÃO (versão inicial)
+
+Conteúdo:
+- index.html: aplicativo web
+- manifest.webmanifest: configuração de instalação
+- sw.js: cache para funcionamento offline após primeiro acesso
+- icon.svg: ícone
+
+IMPORTANTE:
+Esta versão guarda os dados no armazenamento local do navegador (localStorage).
+Os dados não sincronizam entre aparelhos e podem ser apagados se os dados do navegador forem limpos.
+Use a opção Dados > Baixar backup regularmente.
+
+Para virar um app instalável com ícone na tela inicial:
+1. Publique estes arquivos em um serviço gratuito de hospedagem estática com HTTPS, por exemplo GitHub Pages.
+2. Abra o endereço publicado no Chrome do Android.
+3. Menu ⋮ > Adicionar à tela inicial / Instalar app.
+
+Não há mensalidade de software ou hospedagem no GitHub Pages para uso dentro das cotas e regras gratuitas. A publicação exige criar/configurar uma conta GitHub.
